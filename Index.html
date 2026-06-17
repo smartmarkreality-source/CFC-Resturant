@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes" />
+  <title>Restaurant Control Portal v2</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- LOGIN SCREEN -->
+  <section id="loginScreen" class="login-screen">
+    <form id="loginForm" class="login-card">
+      <div class="login-brand">
+        <div class="logo-frame" id="loginLogoPreview">RC</div>
+        <div>
+          <h1 id="loginRestaurantName">Restaurant Control</h1>
+          <p class="muted">Staff login</p>
+        </div>
+      </div>
+      <label>Username <input name="username" required placeholder="admin" /></label>
+      <label>Password <input name="password" type="password" required placeholder="admin123" /></label>
+      <button type="submit">Login</button>
+      <p class="login-help">Default: admin / admin123</p>
+    </form>
+  </section>
+
+  <!-- MAIN PORTAL -->
+  <div id="portalShell" class="portal-shell" hidden>
+    <aside class="sidebar">
+      <div class="brand-block">
+        <div class="logo-frame" id="logoPreview">RC</div>
+        <div>
+          <input id="restaurantName" class="restaurant-name" value="Restaurant Control" />
+          <div class="subtle muted">Web Portal v2</div>
+        </div>
+      </div>
+      <nav class="nav-tabs" id="navContainer"></nav>
+      <div class="sidebar-footer">
+        <button id="exportDataBtn" class="btn-outline">📥 Export Backup</button>
+        <button id="importDataBtn" class="btn-outline">📤 Import Backup</button>
+        <input type="file" id="importFileInput" accept=".json" hidden />
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <h1 id="pageTitle">Overview</h1>
+          <p id="pageDate" class="muted"></p>
+        </div>
+        <div class="top-actions">
+          <div class="user-chip">
+            <span id="currentUserName">Owner</span>
+            <span id="currentUserRole" class="badge">Admin</span>
+            <button id="logoutButton" type="button">Logout</button>
+          </div>
+          <select id="themeSelect">
+            <option value="fresh">Fresh</option>
+            <option value="classic">Classic</option>
+            <option value="contrast">Contrast</option>
+          </select>
+          <button id="printCurrent">🖨️ Print</button>
+        </div>
+      </header>
+
+      <!-- Date Range Filter (Global) -->
+      <div id="globalDateFilter" class="date-filter-bar">
+        <label>From: <input type="date" id="filterDateFrom" /></label>
+        <label>To: <input type="date" id="filterDateTo" /></label>
+        <button id="applyDateFilter">🔍 Filter</button>
+        <button id="clearDateFilter">✖ Clear</button>
+        <span id="filterStatus" class="muted"></span>
+      </div>
+
+      <section id="overview" class="section-panel active" data-title="Overview"></section>
+      <section id="cash" class="section-panel" data-title="Cash"></section>
+      <section id="expenses" class="section-panel" data-title="Expenses"></section>
+      <section id="stock" class="section-panel" data-title="Stock"></section>
+      <section id="menu" class="section-panel" data-title="Menu"></section>
+      <section id="payroll" class="section-panel" data-title="Payroll"></section>
+      <section id="permissions" class="section-panel" data-title="Permissions"></section>
+      <section id="alerts" class="section-panel" data-title="WhatsApp"></section>
+      <section id="settings" class="section-panel" data-title="Settings"></section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
